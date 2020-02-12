@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_color"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Nome"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_nome_do_pedido"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-45dp"
+            android:layout_marginTop="36dp"
+            android:text="Textview"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:text="Endereço"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_endereco_cliente"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-63dp"
+            android:layout_marginTop="36dp"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:text="Produto pedido"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_produto_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-80dp"
+            android:layout_marginTop="51dp"
+            android:text="Textview"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="95dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/quantidade_de_gas"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txt_qtd_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="-63dp"
+        android:gravity="center"
+        android:text="@string/quantidade_de_gua"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txt_qtd_agua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Textview"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="-63dp"
+        android:text="Data do pedido"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txt_data_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="225dp"
+        android:layout_marginTop="4dp"
+        android:text="Textview"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="69dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="315dp"
+        android:layout_marginTop="-63dp"
+        android:gravity="center"
+        android:text="Horário do pedido"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txt_horario_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="4dp"
+        android:text="Textview"
+        android:textColor="@android:color/black" />
+
+
+</LinearLayout>

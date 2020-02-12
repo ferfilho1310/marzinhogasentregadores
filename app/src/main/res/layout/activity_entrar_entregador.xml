@@ -76,25 +76,28 @@
             android:text="@string/entrar"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="90dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="24dp"
             android:text="@string/n_o_cadastrado"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_cadastre_se"
+            android:layout_marginStart="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="-20dp"
             android:text="@string/Cadastre_se"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
+        </LinearLayout>
 
 
     </LinearLayout>
