@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Helpers;
+package br.com.marzinhogas.entregadores.Messaging;
 
 import android.app.Activity;
 import android.app.Application;

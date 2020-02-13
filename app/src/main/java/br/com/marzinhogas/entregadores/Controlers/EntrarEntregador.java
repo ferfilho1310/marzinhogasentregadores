@@ -23,6 +23,8 @@ public class EntrarEntregador extends AppCompatActivity {
 
         FirebaseApp.initializeApp(EntrarEntregador.this);
 
+        AccessFirebase.getInstance().PersistirEntregador(EntrarEntregador.this);
+
         init();
     }
 

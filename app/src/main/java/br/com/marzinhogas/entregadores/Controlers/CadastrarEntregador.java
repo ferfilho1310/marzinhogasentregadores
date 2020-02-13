@@ -21,6 +21,8 @@ public class CadastrarEntregador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_entregador);
 
+        AccessFirebase.getInstance().PersistirEntregador(CadastrarEntregador.this);
+
         init();
 
     }

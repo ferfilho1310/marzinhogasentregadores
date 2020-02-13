@@ -21,6 +21,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -48,9 +51,15 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                        Pedido pedido = Objects.requireNonNull(documentSnapshot).toObject(Pedido.class);
+                        List<Pedido> pedido = Collections.singletonList(documentSnapshot.toObject(Pedido.class));
 
-                        i_entregadores.putExtra("pedido", pedido);
+                        for(Pedido pedido1 : pedido){
+
+                            pedido.add(pedido1);
+
+                            i_entregadores.putExtra("pedido", pedido1);
+
+                        }
 
                         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                                 0, i_entregadores, 0);

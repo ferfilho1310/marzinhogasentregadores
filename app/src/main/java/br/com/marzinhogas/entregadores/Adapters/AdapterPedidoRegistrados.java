@@ -1,11 +1,9 @@
 package br.com.marzinhogas.entregadores.Adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -14,10 +12,7 @@ import br.com.marzinhogas.entregadores.Models.Pedido;
 import br.com.marzinhogas.entregadores.R;
 import br.com.marzinhogas.entregadores.ViewHolders.ViewHolderPedidosTemporarios;
 
-public class Adapters extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios> {
-
-    public static final int VIEW_TYPE_EMPTY = 0;
-    public static final int VIEW_TYPE_NORMAL = 1;
+public class AdapterPedidoRegistrados extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios> {
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -25,7 +20,8 @@ public class Adapters extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidos
      *
      * @param options
      */
-    public Adapters(@NonNull FirestoreRecyclerOptions<Pedido> options) {
+
+    public AdapterPedidoRegistrados(@NonNull FirestoreRecyclerOptions<Pedido> options) {
         super(options);
     }
 
@@ -34,7 +30,6 @@ public class Adapters extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidos
     public ViewHolderPedidosTemporarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new ViewHolderPedidosTemporarios(LayoutInflater.from(parent.getContext()).inflate(R.layout.pedidos, parent, false));
-
     }
 
     @Override
@@ -49,5 +44,4 @@ public class Adapters extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidos
         holder.horario_pedido.setText(model.getHorario());
 
     }
-
 }
