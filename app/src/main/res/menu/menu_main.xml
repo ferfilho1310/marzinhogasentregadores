@@ -7,4 +7,12 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/sair"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_exit"
+        app:showAsAction="ifRoom"
+        android:title="@string/sair"/>
+
 </menu>

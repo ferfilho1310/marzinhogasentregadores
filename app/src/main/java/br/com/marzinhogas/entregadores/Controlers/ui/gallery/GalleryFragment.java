@@ -29,7 +29,7 @@ public class GalleryFragment extends Fragment {
     private RecyclerView rc_pedidos_feitos;
 
     private FirebaseFirestore firebaseAuth = FirebaseFirestore.getInstance();
-    private CollectionReference cl_pedidos = firebaseAuth.collection("PedidoReg");
+    private CollectionReference cl_pedidos = firebaseAuth.collection("PedidoPerm");
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,8 +46,7 @@ public class GalleryFragment extends Fragment {
     private void lerpedidosfeitos() {
 
         query = cl_pedidos
-                .orderBy("data", Query.Direction.DESCENDING)
-                .orderBy("horario", Query.Direction.DESCENDING);
+                .orderBy("data", Query.Direction.ASCENDING);
 
         fro_pedidos = new FirestoreRecyclerOptions.Builder<Pedido>()
                 .setQuery(query, Pedido.class)
@@ -57,8 +56,6 @@ public class GalleryFragment extends Fragment {
         rc_pedidos_feitos.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rc_pedidos_feitos.setAdapter(adapterPedidosCliente);
         rc_pedidos_feitos.setHasFixedSize(true);
-
-
 
     }
 

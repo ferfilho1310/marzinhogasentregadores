@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:paddingVertical="150dp"/>
+        android:paddingVertical="90dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="-250dp"
+        android:layout_marginTop="-150dp"
         android:padding="30dp"
         android:background="@drawable/shadow"
         android:orientation="vertical">
@@ -59,7 +59,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="@string/email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -72,11 +71,9 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="@string/senha"
             app:passwordToggleEnabled="true">
 
@@ -94,8 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirmar_senha"
-            app:passwordToggleEnabled="true"
-            android:layout_marginTop="12dp">
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_confirmar_senha"
@@ -112,7 +108,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+
             android:orientation="horizontal">
 
             <RadioButton
@@ -133,14 +129,12 @@
             android:id="@+id/btn_cadastrar_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:layout_gravity="center"
             android:background="@drawable/corner_color"
             android:text="@string/cadastrar"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-
 
 </LinearLayout>

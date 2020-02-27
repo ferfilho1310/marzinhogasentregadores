@@ -1,5 +1,6 @@
 package br.com.marzinhogas.entregadores.Messaging;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,16 +9,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.PowerManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.google.android.gms.stats.WakeLock;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -39,7 +45,7 @@ public class FirebasePushMessage extends FirebaseMessagingService {
 
         final Map<String, String> map = remoteMessage.getData();
 
-        final String id_entregador = map.get("id_entregador");
+        String id_entregador = map.get("id_entregador");
 
         if (map == null || id_entregador == null) return;
 
@@ -51,15 +57,9 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                        List<Pedido> pedido = Collections.singletonList(documentSnapshot.toObject(Pedido.class));
+                        Pedido pedido = documentSnapshot.toObject(Pedido.class);
 
-                        for(Pedido pedido1 : pedido){
-
-                            pedido.add(pedido1);
-
-                            i_entregadores.putExtra("pedido", pedido1);
-
-                        }
+                        i_entregadores.putExtra("pedido", String.valueOf(pedido));
 
                         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                                 0, i_entregadores, 0);
@@ -80,21 +80,21 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                             notificationChannel.setLightColor(Color.GREEN);
                             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
                             notificationChannel.getSound();
+                            notificationChannel.shouldShowLights();
                             notificationManager.createNotificationChannel(notificationChannel);
 
                         }
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
 
-                        String pedidos = "Nome: " + map.get("nome_cliente") + "\nEndereço: " +
-                                map.get("endereco_cliente") + "\nProduto: " + map.get("produto_cliente")
-                                + "\nHorário: " + map.get("hora_pedido");
+                        String pedidos = map.get("body");
 
                         builder.setColor(Color.WHITE)
                                 .setSmallIcon(R.drawable.logo_entrada)
-                                .setContentTitle("Você tem uma entrega para fazer")
+                                .setContentTitle("Você tem entrega para fazer")
                                 .setContentText(pedidos)
                                 .setAutoCancel(true)
+                                .setLights(0xff00ff00, 300, 100)
                                 .setPriority(Notification.PRIORITY_MAX)
                                 .setDefaults(Notification.DEFAULT_LIGHTS)
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
@@ -102,8 +102,20 @@ public class FirebasePushMessage extends FirebaseMessagingService {
 
                         notificationManager.notify(1, builder.build());
 
+                        PowerManager pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
+                        boolean isScreenOn = pm.isScreenOn();
+                        Log.e("screen on", "" + isScreenOn);
+
+                        if (isScreenOn == false) {
+                            @SuppressLint("InvalidWakeLockTag")
+                            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+                            wl.acquire(10000);
+                            @SuppressLint("InvalidWakeLockTag")
+                            PowerManager.WakeLock wl_cpu = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyCpuLock");
+
+                            wl_cpu.acquire(10000);
+                        }
                     }
                 });
-
     }
 }

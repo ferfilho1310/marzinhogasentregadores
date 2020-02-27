@@ -46,8 +46,7 @@ public class HomeFragment extends Fragment {
     private void lerpedidosfeitos() {
 
         query = cl_pedidos
-                .orderBy("data", Query.Direction.DESCENDING)
-                .orderBy("horario", Query.Direction.DESCENDING);
+                .orderBy("horario", Query.Direction.ASCENDING);
 
         fro_pedidos = new FirestoreRecyclerOptions.Builder<Pedido>()
                 .setQuery(query, Pedido.class)
