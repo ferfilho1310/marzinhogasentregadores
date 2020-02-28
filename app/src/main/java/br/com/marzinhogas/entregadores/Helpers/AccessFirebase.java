@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,12 +37,12 @@ public class AccessFirebase implements IAcessFirebase {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     CollectionReference db_entregadores = FirebaseFirestore.getInstance().collection("Entregadores");
 
-    private AccessFirebase(){
+    private AccessFirebase() {
     }
 
-    public static synchronized AccessFirebase getInstance(){
+    public static synchronized AccessFirebase getInstance() {
 
-        if(accessFirebase == null){
+        if (accessFirebase == null) {
             accessFirebase = new AccessFirebase();
         }
         return accessFirebase;
