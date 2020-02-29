@@ -39,9 +39,25 @@ import br.com.marzinhogas.entregadores.R;
 
 public class FirebasePushMessage extends FirebaseMessagingService {
 
+    PowerManager.WakeLock wl;
+    PowerManager.WakeLock wl_cpu;
+    PowerManager pm;
+
+    @SuppressLint("InvalidWakeLockTag")
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+
+        pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = pm.isScreenOn();
+        Log.e("screen on", "" + isScreenOn);
+
+        if (isScreenOn == false) {
+            wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+            wl.acquire(10000);
+            wl_cpu = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyCpuLock");
+            wl_cpu.acquire(10000);
+        }
 
         final Map<String, String> map = remoteMessage.getData();
 
@@ -101,21 +117,14 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                 .setContentIntent(pendingIntent);
 
                         notificationManager.notify(1, builder.build());
-
-                        PowerManager pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
-                        boolean isScreenOn = pm.isScreenOn();
-                        Log.e("screen on", "" + isScreenOn);
-
-                        if (isScreenOn == false) {
-                            @SuppressLint("InvalidWakeLockTag")
-                            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
-                            wl.acquire(10000);
-                            @SuppressLint("InvalidWakeLockTag")
-                            PowerManager.WakeLock wl_cpu = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyCpuLock");
-
-                            wl_cpu.acquire(10000);
-                        }
                     }
                 });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        wl.release();
+        wl_cpu.release();
     }
 }
