@@ -29,5 +29,6 @@
     <string name="quantidade_de_gas">Quantidade de Gás</string>
     <string name="quantidade_de_gua">Quantidade de Água</string>
     <string name="sair">sair</string>
+    <string name="title_activity_splash_finaliza_pedido">SplashFinalizaPedido</string>
 
 </resources>

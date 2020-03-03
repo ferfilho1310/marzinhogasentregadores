@@ -14,7 +14,7 @@ import br.com.marzinhogas.entregadores.Models.Pedido;
 import br.com.marzinhogas.entregadores.R;
 import br.com.marzinhogas.entregadores.ViewHolders.ViewHolderPedidosTemporarios;
 
-public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios> {
+public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios>{
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link

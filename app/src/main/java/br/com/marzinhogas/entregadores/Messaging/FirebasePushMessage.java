@@ -15,6 +15,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.stats.WakeLock;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -98,7 +99,7 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                             notificationChannel.getSound();
                             notificationChannel.shouldShowLights();
                             notificationManager.createNotificationChannel(notificationChannel);
-
+                            notificationManager.notify();
                         }
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
@@ -114,17 +115,12 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                 .setPriority(Notification.PRIORITY_MAX)
                                 .setDefaults(Notification.DEFAULT_LIGHTS)
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
-                                .setContentIntent(pendingIntent);
+                                .setContentIntent(pendingIntent)
+                                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                .setSmallIcon(R.drawable.logo_entrada);
 
                         notificationManager.notify(1, builder.build());
                     }
                 });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        wl.release();
-        wl_cpu.release();
     }
 }
