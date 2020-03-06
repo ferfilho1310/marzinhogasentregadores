@@ -22,7 +22,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.com.marzinhogas.entregadores.Controlers.EntrarEntregador;
@@ -250,5 +252,47 @@ public class AccessFirebase implements IAcessFirebase {
         });
     }
 
+    @Override
+    public void validar_usuario(final String id_user_validacao, final Activity activity) {
+
+        db_entregadores
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        List<String> id_user = new ArrayList<>();
+
+                        QuerySnapshot queryDocumentSnapshots = task.getResult();
+
+                        for (Entregador entregador1 : queryDocumentSnapshots.toObjects(Entregador.class)) {
+
+                            Log.i("Dados do entregador", "Entregador: " + entregador1.getId_user());
+
+                            id_user.add(entregador1.getId_user());
+                        }
+
+                        if (usuario_existe(id_user, id_user_validacao)) {
+
+                        }else {
+                            sign_out_firebase(activity);
+                            Toast.makeText(activity,"Acesso negado",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+    }
+
+    @Override
+    public boolean usuario_existe(List<String> ls_usuario, String user) {
+        boolean usario_validar = false;
+
+        for (int i = 0; i < ls_usuario.size(); i++) {
+            if (user.equals(ls_usuario.get(i))) {
+                usario_validar = true;
+            }
+        }
+        return usario_validar;
+    }
 }
 

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/shadow">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -92,7 +93,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@color/background"
+        android:background="@android:color/white"
         android:orientation="horizontal">
 
         <TextView

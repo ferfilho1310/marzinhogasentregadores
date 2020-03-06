@@ -2,6 +2,8 @@ package br.com.marzinhogas.entregadores.Helpers;
 
 import android.app.Activity;
 
+import java.util.List;
+
 import br.com.marzinhogas.entregadores.Models.Entregador;
 
 public interface IAcessFirebase {
@@ -15,5 +17,9 @@ public interface IAcessFirebase {
     void entrar_firebase(final String email, String senha, final Activity activity);
 
     void reset_senha(final String email, final Activity context);
+
+    void validar_usuario(String id_user_validacao, final Activity activity);
+
+    boolean usuario_existe(List<String> ls_usuario, String user);
 
 }

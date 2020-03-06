@@ -11,12 +11,13 @@ public class Entregador {
     private String token;
     private boolean online;
     private String identificador;
+    private String id_user;
 
     public Entregador() {
     }
 
     public Entregador(String nome, String endereco, String email, String senha,
-                      String confirmarsenha, String sexo, String token,String identificador, Boolean online) {
+                      String confirmarsenha, String sexo, String token,String identificador, String id_user, Boolean online) {
         this.nome = nome;
         this.endereco = endereco;
         this.email = email;
@@ -26,6 +27,7 @@ public class Entregador {
         this.token = token;
         this.online = online;
         this.identificador = identificador;
+        this.id_user = id_user;
     }
 
     public String getNome() {
@@ -98,5 +100,13 @@ public class Entregador {
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
     }
 }

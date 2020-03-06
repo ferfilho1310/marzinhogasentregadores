@@ -18,6 +18,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    String getUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +100,15 @@ public class MainActivity extends AppCompatActivity {
 
             drawer.openDrawer(Gravity.LEFT);
         }
-
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseUser != null) {
+            getUid = firebaseUser.getUid();
+        }
+        AccessFirebase.getInstance().validar_usuario(getUid,MainActivity.this);
     }
 }

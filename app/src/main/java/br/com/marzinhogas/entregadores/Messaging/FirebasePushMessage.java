@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
@@ -60,6 +61,9 @@ public class FirebasePushMessage extends FirebaseMessagingService {
             wl_cpu.acquire(10000);
         }
 
+        AudioManager audioManager = (AudioManager) getApplication().getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_RING,audioManager.getStreamMaxVolume(AudioManager.STREAM_RING),0);
+
         final Map<String, String> map = remoteMessage.getData();
 
         String id_entregador = map.get("id_entregador");
@@ -99,7 +103,6 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                             notificationChannel.getSound();
                             notificationChannel.shouldShowLights();
                             notificationManager.createNotificationChannel(notificationChannel);
-                            notificationManager.notify();
                         }
 
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
@@ -111,9 +114,10 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                 .setContentTitle("Você tem entrega para fazer")
                                 .setContentText(pedidos)
                                 .setAutoCancel(true)
+                                .setGroup("br.com.marzinhogas.entregadores")
                                 .setLights(0xff00ff00, 300, 100)
                                 .setPriority(Notification.PRIORITY_MAX)
-                                .setDefaults(Notification.DEFAULT_LIGHTS)
+                                .setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE)
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
                                 .setContentIntent(pendingIntent)
                                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
