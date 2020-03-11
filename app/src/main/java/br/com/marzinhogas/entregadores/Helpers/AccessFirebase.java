@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +72,6 @@ public class AccessFirebase implements IAcessFirebase {
         }
 
         if (TextUtils.isEmpty(entregador.getConfirmarsenha())) {
-
             Toast.makeText(activity, "Confirme a senha", Toast.LENGTH_LONG).show();
             return;
         }
@@ -104,7 +104,7 @@ public class AccessFirebase implements IAcessFirebase {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(intent);
 
-                        db_entregadores.add(map);
+                        db_entregadores.document(firebaseAuth.getUid()).set(map);
 
                         Toast.makeText(activity, "Usuário cadastrado com sucesso.", Toast.LENGTH_LONG).show();
 
@@ -136,11 +136,8 @@ public class AccessFirebase implements IAcessFirebase {
 
             });
         } else {
-
             Toast.makeText(activity, "As senhas estão diferentes.", Toast.LENGTH_LONG).show();
-
         }
-
     }
 
     @Override
@@ -212,7 +209,6 @@ public class AccessFirebase implements IAcessFirebase {
                 progressDialog.dismiss();
             }
         });
-
     }
 
     @Override
@@ -238,15 +234,11 @@ public class AccessFirebase implements IAcessFirebase {
                         context.finish();
 
                         Toast.makeText(context, "Enviado e-mail para reset de senha para " + email, Toast.LENGTH_LONG).show();
-
                     } else {
-
                         Toast.makeText(context, "E-mail inválido", Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
-
                     Toast.makeText(context, "Erro ao enviar e-mail de recuperação:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -293,6 +285,16 @@ public class AccessFirebase implements IAcessFirebase {
             }
         }
         return usario_validar;
+    }
+
+    @Override
+    public void atualiza_token(String uid, String token) {
+
+        if (uid != null) {
+            FirebaseFirestore.getInstance().collection("Entregadores")
+                    .document(uid)
+                    .update("token", token);
+        }
     }
 }
 

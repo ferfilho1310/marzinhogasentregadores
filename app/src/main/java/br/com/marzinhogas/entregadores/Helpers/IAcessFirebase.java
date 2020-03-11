@@ -22,4 +22,6 @@ public interface IAcessFirebase {
 
     boolean usuario_existe(List<String> ls_usuario, String user);
 
+    void atualiza_token(String uid,String token);
+
 }
