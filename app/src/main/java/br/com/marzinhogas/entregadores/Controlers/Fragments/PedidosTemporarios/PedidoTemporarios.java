@@ -37,7 +37,7 @@ public class PedidoTemporarios extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.pedidos_temporarios, container, false);
 
         rc_pedidos_feitos = root.findViewById(R.id.rc_fila_pedido);
         txt_registro_temp = root.findViewById(R.id.txt_registro_pedido_temporario);

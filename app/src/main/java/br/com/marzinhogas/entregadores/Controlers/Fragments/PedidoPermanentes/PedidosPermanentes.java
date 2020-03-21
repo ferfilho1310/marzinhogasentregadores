@@ -36,7 +36,7 @@ public class PedidosPermanentes extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View root = inflater.inflate(R.layout.pedido_permanentes, container, false);
 
         rc_pedidos_feitos = root.findViewById(R.id.rc_fila_pedido_registro);
         txt_registro_permanente = root.findViewById(R.id.txt_registro_pedido_permanente);

@@ -9,13 +9,13 @@
         android:id="@+id/pedidos_temp"
         android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.PedidosTemporarios.PedidoTemporarios"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/pedidos_temporarios" />
 
     <fragment
         android:id="@+id/pedidos_permanentes"
         android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.PedidoPermanentes.PedidosPermanentes"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/pedido_permanentes" />
 
     <fragment
         android:id="@+id/nav_slideshow"

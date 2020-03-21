@@ -1,14 +1,23 @@
 package br.com.marzinhogas.entregadores.Controlers;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,6 +36,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 
 import br.com.marzinhogas.entregadores.Helpers.AccessFirebase;
+import br.com.marzinhogas.entregadores.Helpers.AccessResourcesCellPhone;
 import br.com.marzinhogas.entregadores.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
+        checkForPhoneStatePermission();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -56,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        AccessFirebase.getInstance().atualiza_token(FirebaseAuth.getInstance().getUid(),FirebaseInstanceId.getInstance().getToken());
+        AccessFirebase.getInstance().atualiza_token(FirebaseAuth.getInstance().getUid(), FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override
@@ -107,6 +119,55 @@ public class MainActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             getUid = firebaseUser.getUid();
         }
-        AccessFirebase.getInstance().validar_usuario(getUid,MainActivity.this);
+
+        AccessFirebase.getInstance().validar_usuario(getUid, MainActivity.this);
+        AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(MainActivity.this), MainActivity.this);
+    }
+
+    private void checkForPhoneStatePermission() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ContextCompat.checkSelfPermission(MainActivity.this,
+                    Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                        Manifest.permission.READ_PHONE_STATE)) {
+
+                    // Show an explanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+
+                    showPermissionMessage();
+
+                } else {
+
+                    // No explanation needed, we can request the permission.
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.READ_PHONE_STATE},
+                            1);
+                }
+            }
+        } else {
+            //... Permission has already been granted, obtain the UUID
+            AccessResourcesCellPhone.getInstance().getImei(MainActivity.this);
+        }
+
+    }
+
+    private void showPermissionMessage() {
+        new AlertDialog.Builder(this)
+                .setTitle("Read phone state")
+                .setMessage("This app requires the permission to read phone state to continue")
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.READ_PHONE_STATE},
+                                1);
+                    }
+                }).create().show();
     }
 }

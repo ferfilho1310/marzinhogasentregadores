@@ -24,4 +24,6 @@ public interface IAcessFirebase {
 
     void atualiza_token(String uid,String token);
 
+    void validar_cadastro(String imei, Activity activity);
+
 }

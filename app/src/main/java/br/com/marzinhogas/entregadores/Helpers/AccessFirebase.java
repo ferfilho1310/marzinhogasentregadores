@@ -31,6 +31,7 @@ import java.util.Map;
 import br.com.marzinhogas.entregadores.Controlers.EntrarEntregador;
 import br.com.marzinhogas.entregadores.Controlers.MainActivity;
 import br.com.marzinhogas.entregadores.Models.Entregador;
+import br.com.marzinhogas.entregadores.Models.Imei;
 
 public class AccessFirebase implements IAcessFirebase {
 
@@ -39,6 +40,7 @@ public class AccessFirebase implements IAcessFirebase {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     CollectionReference db_entregadores = FirebaseFirestore.getInstance().collection("Entregadores");
+    CollectionReference db_imei = FirebaseFirestore.getInstance().collection("Imei");
 
     private AccessFirebase() {
     }
@@ -76,12 +78,12 @@ public class AccessFirebase implements IAcessFirebase {
             return;
         }
 
-        if(TextUtils.isEmpty(entregador.getCpf()) || Integer.valueOf(entregador.getCpf()) > 11){
+        if (TextUtils.isEmpty(entregador.getCpf()) || Integer.valueOf(entregador.getCpf()) > 11) {
             Toast.makeText(activity, "CPF vázio ou inválido", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if(TextUtils.isEmpty(entregador.getPlaca())){
+        if (TextUtils.isEmpty(entregador.getPlaca())) {
             Toast.makeText(activity, "Informe a placa da moto", Toast.LENGTH_LONG).show();
             return;
         }
@@ -105,8 +107,8 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("id_user", firebaseAuth.getUid());
                         map.put("nome", entregador.getNome());
                         map.put("email", entregador.getEmail());
-                        map.put("cpf",entregador.getCpf());
-                        map.put("placa",entregador.getPlaca());
+                        map.put("cpf", entregador.getCpf());
+                        map.put("placa", entregador.getPlaca());
                         map.put("senha", entregador.getSenha());
                         map.put("confirmarsenha", entregador.getConfirmarsenha());
                         map.put("sexo", entregador.getSexo());
@@ -278,11 +280,39 @@ public class AccessFirebase implements IAcessFirebase {
 
                         if (usuario_existe(id_user, id_user_validacao)) {
 
-                        }else {
+                        } else {
                             sign_out_firebase(activity);
-                            Toast.makeText(activity,"Acesso negado",Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, "Acesso negado", Toast.LENGTH_LONG).show();
                         }
 
+                    }
+                });
+    }
+
+    @Override
+    public void validar_cadastro(final String imei, final Activity activity) {
+
+        db_imei
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        List<String> ls_imei = new ArrayList<>();
+
+                        QuerySnapshot queryDocumentSnapshots = task.getResult();
+
+                        for (Imei imei1 : queryDocumentSnapshots.toObjects(Imei.class)) {
+
+                            ls_imei.add(imei1.getImei());
+                        }
+
+                        if (usuario_existe(ls_imei, imei)) {
+
+                        } else {
+                            sign_out_firebase(activity);
+                            Toast.makeText(activity, "Telefone não cadastrado na base de dados", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }

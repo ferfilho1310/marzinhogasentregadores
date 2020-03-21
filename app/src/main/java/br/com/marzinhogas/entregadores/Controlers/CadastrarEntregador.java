@@ -1,9 +1,16 @@
 package br.com.marzinhogas.entregadores.Controlers;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import br.com.marzinhogas.entregadores.Helpers.AccessFirebase;
+import br.com.marzinhogas.entregadores.Helpers.AccessResourcesCellPhone;
 import br.com.marzinhogas.entregadores.Models.Entregador;
 import br.com.marzinhogas.entregadores.R;
 
@@ -66,6 +74,8 @@ public class CadastrarEntregador extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
