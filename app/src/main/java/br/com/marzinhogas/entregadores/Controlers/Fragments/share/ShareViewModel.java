@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Controlers.ui.share;
+package br.com.marzinhogas.entregadores.Controlers.Fragments.share;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -76,6 +76,16 @@ public class AccessFirebase implements IAcessFirebase {
             return;
         }
 
+        if(TextUtils.isEmpty(entregador.getCpf()) || Integer.valueOf(entregador.getCpf()) > 11){
+            Toast.makeText(activity, "CPF vázio ou inválido", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(TextUtils.isEmpty(entregador.getPlaca())){
+            Toast.makeText(activity, "Informe a placa da moto", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (entregador.getSenha().equals(entregador.getConfirmarsenha())) {
 
             progressDialog = new ProgressDialog(activity);
@@ -95,6 +105,8 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("id_user", firebaseAuth.getUid());
                         map.put("nome", entregador.getNome());
                         map.put("email", entregador.getEmail());
+                        map.put("cpf",entregador.getCpf());
+                        map.put("placa",entregador.getPlaca());
                         map.put("senha", entregador.getSenha());
                         map.put("confirmarsenha", entregador.getConfirmarsenha());
                         map.put("sexo", entregador.getSexo());

@@ -3,41 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/pedidos_temp">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.home.HomeFragment"
+        android:id="@+id/pedidos_temp"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.PedidosTemporarios.PedidoTemporarios"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.gallery.GalleryFragment"
+        android:id="@+id/pedidos_permanentes"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.PedidoPermanentes.PedidosPermanentes"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.slideshow.SlideshowFragment"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.tools.ToolsFragment"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.share.ShareFragment"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="br.com.marzinhogas.entregadores.Controlers.ui.send.SendFragment"
+        android:name="br.com.marzinhogas.entregadores.Controlers.Fragments.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>

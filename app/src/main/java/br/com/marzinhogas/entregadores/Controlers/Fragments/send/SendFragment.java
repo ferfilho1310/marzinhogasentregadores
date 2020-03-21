@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Controlers.ui.send;
+package br.com.marzinhogas.entregadores.Controlers.Fragments.send;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

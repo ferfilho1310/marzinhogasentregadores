@@ -1,6 +1,6 @@
 package br.com.marzinhogas.entregadores.Models;
 
-public class Entregador {
+public class Entregador extends Veiculo{
 
     private String nome;
     private String endereco;
@@ -10,6 +10,7 @@ public class Entregador {
     private String sexo;
     private String token;
     private boolean online;
+    private String cpf;
     private String identificador;
     private String id_user;
 
@@ -17,7 +18,8 @@ public class Entregador {
     }
 
     public Entregador(String nome, String endereco, String email, String senha,
-                      String confirmarsenha, String sexo, String token,String identificador, String id_user, Boolean online) {
+                      String confirmarsenha, String sexo, String token, String identificador,
+                      String id_user, String cpf, Boolean online) {
         this.nome = nome;
         this.endereco = endereco;
         this.email = email;
@@ -28,6 +30,7 @@ public class Entregador {
         this.online = online;
         this.identificador = identificador;
         this.id_user = id_user;
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -108,5 +111,13 @@ public class Entregador {
 
     public void setId_user(String id_user) {
         this.id_user = id_user;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

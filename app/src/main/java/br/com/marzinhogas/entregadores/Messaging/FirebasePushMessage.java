@@ -11,10 +11,12 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -39,6 +41,8 @@ import br.com.marzinhogas.entregadores.Controlers.MainActivity;
 import br.com.marzinhogas.entregadores.Models.Pedido;
 import br.com.marzinhogas.entregadores.R;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 public class FirebasePushMessage extends FirebaseMessagingService {
 
     PowerManager.WakeLock wl;
@@ -50,19 +54,8 @@ public class FirebasePushMessage extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
-        boolean isScreenOn = pm.isScreenOn();
-        Log.e("screen on", "" + isScreenOn);
-
-        if (isScreenOn == false) {
-            wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
-            wl.acquire(10000);
-            wl_cpu = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyCpuLock");
-            wl_cpu.acquire(10000);
-        }
-
         AudioManager audioManager = (AudioManager) getApplication().getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_RING,audioManager.getStreamMaxVolume(AudioManager.STREAM_RING),0);
+        audioManager.setStreamVolume(AudioManager.STREAM_RING, audioManager.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
 
         final Map<String, String> map = remoteMessage.getData();
 
@@ -114,17 +107,26 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                 .setContentTitle("Você tem entrega para fazer")
                                 .setContentText(pedidos)
                                 .setAutoCancel(true)
-                                .setGroup("br.com.marzinhogas.entregadores")
                                 .setLights(0xff00ff00, 300, 100)
                                 .setPriority(Notification.PRIORITY_MAX)
-                                .setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE)
+                                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
                                 .setContentIntent(pendingIntent)
-                                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                                .setSmallIcon(R.drawable.logo_entrada);
+                                .setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
                         notificationManager.notify(1, builder.build());
                     }
                 });
+
+        pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
+        boolean displayon = pm.isScreenOn();
+
+        if (displayon != true) {
+
+            wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+            wl.acquire(10000);
+            wl_cpu = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyCpuLock");
+            wl_cpu.acquire(10000);
+        }
     }
 }

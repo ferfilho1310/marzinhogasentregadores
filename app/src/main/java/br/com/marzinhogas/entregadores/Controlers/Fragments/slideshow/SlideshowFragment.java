@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Controlers.ui.slideshow;
+package br.com.marzinhogas.entregadores.Controlers.Fragments.slideshow;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

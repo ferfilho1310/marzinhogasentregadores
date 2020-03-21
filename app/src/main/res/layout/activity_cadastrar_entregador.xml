@@ -57,6 +57,35 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Placa da moto">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_placa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_moto"
+                android:drawablePadding="12dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CPF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_cpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:drawableLeft="@drawable/ic_documento"
+                android:drawablePadding="12dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/senha"
             app:passwordToggleEnabled="true">
 
@@ -91,7 +120,6 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
 
             <RadioButton

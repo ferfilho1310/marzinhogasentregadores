@@ -1,8 +1,11 @@
 package br.com.marzinhogas.entregadores.Controlers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +26,10 @@ public class CadastrarEntregador extends AppCompatActivity {
 
         AccessFirebase.getInstance().PersistirEntregador(CadastrarEntregador.this);
 
-        init();
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        init();
     }
 
     public void init() {
@@ -35,6 +40,8 @@ public class CadastrarEntregador extends AppCompatActivity {
         final EditText senha = findViewById(R.id.ed_senha);
         final EditText senha_confirmar = findViewById(R.id.ed_confirmar_senha);
         final String token = FirebaseInstanceId.getInstance().getToken();
+        final EditText cpf = findViewById(R.id.ed_cpf);
+        final EditText placa = findViewById(R.id.ed_placa);
 
         FirebaseFirestore.getInstance().collection("Entregadores")
                 .document()
@@ -51,13 +58,25 @@ public class CadastrarEntregador extends AppCompatActivity {
                 entregador.setSenha(senha.getText().toString());
                 entregador.setConfirmarsenha(senha_confirmar.getText().toString());
                 entregador.setToken(token);
+                entregador.setCpf(cpf.getText().toString());
+                entregador.setPlaca(placa.getText().toString());
 
                 AccessFirebase.getInstance().CadastrarEntregador(entregador, CadastrarEntregador.this);
 
             }
         });
-
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+        if(item.getItemId() == android.R.id.home){
+
+            Intent i_voltar_tela_inicial = new Intent(CadastrarEntregador.this,EntrarEntregador.class);
+            startActivity(i_voltar_tela_inicial);
+            finish();
+
+        }
+        return false;
+    }
 }
