@@ -100,15 +100,4 @@
 
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/imei"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IMEI "
-        android:layout_marginTop="15sp"
-        android:textSize="17sp"
-        android:textColor="@android:color/black"
-        android:layout_gravity="center"/>
-
 </LinearLayout>

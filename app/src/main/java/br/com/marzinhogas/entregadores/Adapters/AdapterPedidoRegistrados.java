@@ -35,12 +35,14 @@ public class AdapterPedidoRegistrados extends FirestoreRecyclerAdapter<Pedido, V
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderPedidosTemporarios holder, int position, @NonNull Pedido model) {
 
+        String endereco = model.getEndereco() + "\n" + model.getNumero() +"\n"+ model.getBairro();
+
         holder.nome.setText(model.getNome());
         holder.produtos.setText(model.getProduto());
         holder.qtd_gas.setText(String.valueOf(model.getQuantidade_gas()));
         holder.qtd_agua.setText(String.valueOf(model.getQuantidade_agua()));
         holder.data.setText(model.getData());
-        holder.endereco.setText(model.getEndereco());
+        holder.endereco.setText(endereco);
         holder.horario_pedido.setText(model.getHorario());
 
     }

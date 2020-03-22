@@ -11,6 +11,8 @@ public class Pedido implements Parcelable {
     private String endereco;
     private int quantidade_gas;
     private int quantidade_agua;
+    private String numero;
+    private String bairro;
     private String data;
     private String user_id_pedido;
     private String horario;
@@ -20,7 +22,7 @@ public class Pedido implements Parcelable {
     }
 
     public Pedido(String nome, String produto, String endereco, int quantidade_gas,
-                  int quantidade_agua, String data, String user_id_pedido, String horario, Boolean entregue) {
+                  int quantidade_agua, String data, String user_id_pedido, String horario, String numero,String bairro, Boolean entregue) {
         this.nome = nome;
         this.produto = produto;
         this.endereco = endereco;
@@ -30,6 +32,8 @@ public class Pedido implements Parcelable {
         this.user_id_pedido = user_id_pedido;
         this.horario = horario;
         this.entregue = entregue;
+        this.bairro = bairro;
+        this.numero = numero;
     }
 
     protected Pedido(Parcel in) {
@@ -42,6 +46,8 @@ public class Pedido implements Parcelable {
         user_id_pedido = in.readString();
         horario = in.readString();
         entregue = Boolean.valueOf(in.readString());
+        bairro = in.readString();
+        numero = in.readString();
     }
 
     public static final Creator<Pedido> CREATOR = new Creator<Pedido>() {
@@ -128,6 +134,22 @@ public class Pedido implements Parcelable {
         this.entregue = entregue;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -144,5 +166,7 @@ public class Pedido implements Parcelable {
         parcel.writeString(user_id_pedido);
         parcel.writeString(horario);
         parcel.writeString(String.valueOf(entregue));
+        parcel.writeString(bairro);
+        parcel.writeString(numero);
     }
 }

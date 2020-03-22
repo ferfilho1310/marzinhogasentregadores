@@ -78,7 +78,7 @@ public class AccessFirebase implements IAcessFirebase {
             return;
         }
 
-        if (TextUtils.isEmpty(entregador.getCpf()) || Integer.valueOf(entregador.getCpf()) > 11) {
+        if (TextUtils.isEmpty(entregador.getCpf())) {
             Toast.makeText(activity, "CPF vázio ou inválido", Toast.LENGTH_LONG).show();
             return;
         }
@@ -117,6 +117,7 @@ public class AccessFirebase implements IAcessFirebase {
                         Intent intent = new Intent(activity, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(intent);
+                        activity.finish();
 
                         db_entregadores.document(firebaseAuth.getUid()).set(map);
 
@@ -268,23 +269,20 @@ public class AccessFirebase implements IAcessFirebase {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         List<String> id_user = new ArrayList<>();
-
                         QuerySnapshot queryDocumentSnapshots = task.getResult();
 
                         for (Entregador entregador1 : queryDocumentSnapshots.toObjects(Entregador.class)) {
 
                             Log.i("Dados do entregador", "Entregador: " + entregador1.getId_user());
-
                             id_user.add(entregador1.getId_user());
                         }
 
                         if (usuario_existe(id_user, id_user_validacao)) {
-
+                            Log.i("TAG", "Usuário Liberado");
                         } else {
                             sign_out_firebase(activity);
                             Toast.makeText(activity, "Acesso negado", Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
     }

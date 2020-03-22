@@ -7,9 +7,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -51,10 +54,6 @@ public class CadastrarEntregador extends AppCompatActivity {
         final EditText cpf = findViewById(R.id.ed_cpf);
         final EditText placa = findViewById(R.id.ed_placa);
 
-        FirebaseFirestore.getInstance().collection("Entregadores")
-                .document()
-                .update("token",token);
-
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,12 +69,24 @@ public class CadastrarEntregador extends AppCompatActivity {
                 entregador.setPlaca(placa.getText().toString());
 
                 AccessFirebase.getInstance().CadastrarEntregador(entregador, CadastrarEntregador.this);
+                validartelefone(CadastrarEntregador.this);
 
             }
         });
     }
 
+    @SuppressLint("StaticFieldLeak")
+    public void validartelefone(final Activity activity){
+        new AsyncTask<Void,Void,Void>(){
 
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(activity),activity);
+                return null;
+            }
+        };
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

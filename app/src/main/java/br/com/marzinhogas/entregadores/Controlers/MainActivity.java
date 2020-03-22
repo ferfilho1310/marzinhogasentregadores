@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
-        checkForPhoneStatePermission();
+      AccessResourcesCellPhone.getInstance().checkForPhoneStatePermission(MainActivity.this);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -122,52 +122,5 @@ public class MainActivity extends AppCompatActivity {
 
         AccessFirebase.getInstance().validar_usuario(getUid, MainActivity.this);
         AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(MainActivity.this), MainActivity.this);
-    }
-
-    private void checkForPhoneStatePermission() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            if (ContextCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
-                        Manifest.permission.READ_PHONE_STATE)) {
-
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                    showPermissionMessage();
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.READ_PHONE_STATE},
-                            1);
-                }
-            }
-        } else {
-            //... Permission has already been granted, obtain the UUID
-            AccessResourcesCellPhone.getInstance().getImei(MainActivity.this);
-        }
-
-    }
-
-    private void showPermissionMessage() {
-        new AlertDialog.Builder(this)
-                .setTitle("Read phone state")
-                .setMessage("This app requires the permission to read phone state to continue")
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(MainActivity.this,
-                                new String[]{Manifest.permission.READ_PHONE_STATE},
-                                1);
-                    }
-                }).create().show();
     }
 }

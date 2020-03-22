@@ -26,22 +26,16 @@ import br.com.marzinhogas.entregadores.R;
 
 public class EntrarEntregador extends AppCompatActivity {
 
-    TextView imei;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar_entregador);
-
-        imei = findViewById(R.id.imei);
 
         checkForPhoneStatePermission();
 
         FirebaseApp.initializeApp(EntrarEntregador.this);
 
         AccessFirebase.getInstance().PersistirEntregador(EntrarEntregador.this);
-
-        imei.setText(AccessResourcesCellPhone.getInstance().getImei(EntrarEntregador.this));
 
         init();
     }

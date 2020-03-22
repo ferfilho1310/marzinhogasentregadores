@@ -6,6 +6,8 @@ public interface IAccessResourcesCellPhone {
 
     String getImei(Activity activity);
 
-    void permissoes(Activity activity);
+    void checkForPhoneStatePermission(Activity activity);
+
+    void showPermissionMessage(Activity activity);
 
 }
