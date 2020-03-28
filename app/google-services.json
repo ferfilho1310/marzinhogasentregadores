@@ -1,58 +1,34 @@
 {
   "project_info": {
-    "project_number": "56985235580",
-    "firebase_url": "https://marzinhogas-fa7c0.firebaseio.com",
-    "project_id": "marzinhogas-fa7c0",
-    "storage_bucket": "marzinhogas-fa7c0.appspot.com"
+    "project_number": "315196483093",
+    "firebase_url": "https://marzinhogascliente.firebaseio.com",
+    "project_id": "marzinhogascliente",
+    "storage_bucket": "marzinhogascliente.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:56985235580:android:d22237f4b7085dc69dd9f9",
+        "mobilesdk_app_id": "1:315196483093:android:95b1216827cbb4143c901c",
         "android_client_info": {
           "package_name": "br.com.marzinhogas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "56985235580-ep21b6lq3p1lspvvmd0ucpge4j5053l8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.marzinhogas",
-            "certificate_hash": "a7fec72dbda9df3b7ef18c75af4c0407130ab3b7"
-          }
-        },
-        {
-          "client_id": "56985235580-5gurpdccmjij31dn68rnsemo9ejsi9s8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.marzinhogas",
-            "certificate_hash": "7b6cb1a5637e25b59d3f1796ab9fe8ddbe94c7c9"
-          }
-        },
-        {
-          "client_id": "56985235580-6tubki35ng9uuc7n3lknvbj3f58t6bfh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.marzinhogas",
-            "certificate_hash": "1a25dcd749a38cedda61870799afefb2985f9d05"
-          }
-        },
-        {
-          "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
+          "client_id": "315196483093-l9dck1qe8hiee4q1kuk3q9us6koootva.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCLW7WRFGrPxm-EpvwdkIUdZ6yCIhm7eVE"
+          "current_key": "AIzaSyBz55XWz6qiJF0C1sUjApUnhA--R48M108"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
+              "client_id": "315196483093-l9dck1qe8hiee4q1kuk3q9us6koootva.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -61,14 +37,14 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:56985235580:android:17eab1baa255b3399dd9f9",
+        "mobilesdk_app_id": "1:315196483093:android:4c61865f2402fe7c3c901c",
         "android_client_info": {
           "package_name": "br.com.marzinhogas.entregadores"
         }
       },
       "oauth_client": [
         {
-          "client_id": "56985235580-22o5gcp8oi43sfpfnck0qo4t4vn5a5nb.apps.googleusercontent.com",
+          "client_id": "315196483093-rbrtrv54rp5bulq6p4afheticb9un8ue.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.marzinhogas.entregadores",
@@ -76,94 +52,20 @@
           }
         },
         {
-          "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
+          "client_id": "315196483093-l9dck1qe8hiee4q1kuk3q9us6koootva.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCLW7WRFGrPxm-EpvwdkIUdZ6yCIhm7eVE"
+          "current_key": "AIzaSyBz55XWz6qiJF0C1sUjApUnhA--R48M108"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:56985235580:android:f547cf727644287e9dd9f9",
-        "android_client_info": {
-          "package_name": "com.example.main"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "56985235580-mcmenoccejonoo0osc87ds33rs9r9mpt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.main",
-            "certificate_hash": "1a25dcd749a38cedda61870799afefb2985f9d05"
-          }
-        },
-        {
-          "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCLW7WRFGrPxm-EpvwdkIUdZ6yCIhm7eVE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:56985235580:android:41029914a255599e9dd9f9",
-        "android_client_info": {
-          "package_name": "com.example.marzinhogas"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "56985235580-a94o31mv99gf7ndih3fvee2iko4jmble.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.marzinhogas",
-            "certificate_hash": "1a25dcd749a38cedda61870799afefb2985f9d05"
-          }
-        },
-        {
-          "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCLW7WRFGrPxm-EpvwdkIUdZ6yCIhm7eVE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "56985235580-eth13bmdua24tmvmkoao715019g86c5h.apps.googleusercontent.com",
+              "client_id": "315196483093-l9dck1qe8hiee4q1kuk3q9us6koootva.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
