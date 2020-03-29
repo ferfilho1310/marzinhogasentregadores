@@ -71,50 +71,53 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                        Pedido pedido = documentSnapshot.toObject(Pedido.class);
+                        if (documentSnapshot != null) {
 
-                        i_entregadores.putExtra("pedido", String.valueOf(pedido));
+                            Pedido pedido = documentSnapshot.toObject(Pedido.class);
 
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                                0, i_entregadores, 0);
+                            i_entregadores.putExtra("pedido", String.valueOf(pedido));
 
-                        NotificationManager notificationManager =
-                                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                                    0, i_entregadores, 0);
 
-                        String notificacionid = "channel_id";
+                            NotificationManager notificationManager =
+                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            String notificacionid = "channel_id";
 
-                            NotificationChannel notificationChannel =
-                                    new NotificationChannel(notificacionid, "notificacion",
-                                            NotificationManager.IMPORTANCE_HIGH);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-                            notificationChannel.setDescription("Channel Description");
-                            notificationChannel.enableLights(true);
-                            notificationChannel.setLightColor(Color.GREEN);
-                            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-                            notificationChannel.getSound();
-                            notificationChannel.shouldShowLights();
-                            notificationManager.createNotificationChannel(notificationChannel);
+                                NotificationChannel notificationChannel =
+                                        new NotificationChannel(notificacionid, "notificacion",
+                                                NotificationManager.IMPORTANCE_HIGH);
+
+                                notificationChannel.setDescription("Channel Description");
+                                notificationChannel.enableLights(true);
+                                notificationChannel.setLightColor(Color.GREEN);
+                                notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+                                notificationChannel.getSound();
+                                notificationChannel.shouldShowLights();
+                                notificationManager.createNotificationChannel(notificationChannel);
+                            }
+
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
+
+                            String pedidos = map.get("body");
+
+                            builder.setColor(Color.WHITE)
+                                    .setSmallIcon(R.drawable.logo_entrada)
+                                    .setContentTitle("Você tem entrega para fazer")
+                                    .setContentText(pedidos)
+                                    .setAutoCancel(true)
+                                    .setLights(0xff00ff00, 300, 100)
+                                    .setPriority(Notification.PRIORITY_MAX)
+                                    .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                                    .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
+                                    .setContentIntent(pendingIntent)
+                                    .setCategory(NotificationCompat.CATEGORY_MESSAGE);
+
+                            notificationManager.notify(1, builder.build());
                         }
-
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
-
-                        String pedidos = map.get("body");
-
-                        builder.setColor(Color.WHITE)
-                                .setSmallIcon(R.drawable.logo_entrada)
-                                .setContentTitle("Você tem entrega para fazer")
-                                .setContentText(pedidos)
-                                .setAutoCancel(true)
-                                .setLights(0xff00ff00, 300, 100)
-                                .setPriority(Notification.PRIORITY_MAX)
-                                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
-                                .setStyle(new NotificationCompat.BigTextStyle().bigText(pedidos))
-                                .setContentIntent(pendingIntent)
-                                .setCategory(NotificationCompat.CATEGORY_MESSAGE);
-
-                        notificationManager.notify(1, builder.build());
                     }
                 });
 

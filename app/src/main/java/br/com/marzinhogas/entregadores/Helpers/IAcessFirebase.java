@@ -5,6 +5,7 @@ import android.app.Activity;
 import java.util.List;
 
 import br.com.marzinhogas.entregadores.Models.Entregador;
+import br.com.marzinhogas.entregadores.Models.Imei;
 
 public interface IAcessFirebase {
 
@@ -25,5 +26,7 @@ public interface IAcessFirebase {
     void atualiza_token(String uid,String token);
 
     void validar_cadastro(String imei, Activity activity);
+
+    void cadastro_celular(Imei imei);
 
 }

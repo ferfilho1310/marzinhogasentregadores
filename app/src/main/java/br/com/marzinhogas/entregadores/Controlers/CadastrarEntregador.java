@@ -40,6 +40,8 @@ public class CadastrarEntregador extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setTitle("Cadastre-se");
+
         init();
     }
 

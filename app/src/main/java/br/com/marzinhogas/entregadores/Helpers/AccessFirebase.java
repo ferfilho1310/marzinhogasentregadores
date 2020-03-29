@@ -54,6 +54,18 @@ public class AccessFirebase implements IAcessFirebase {
     }
 
     @Override
+    public void cadastro_celular(Imei imei) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("usuario", imei.getUsuariodocelular());
+        map.put("imei", imei.getImei());
+
+        db_imei.add(map);
+
+    }
+
+    @Override
     public void CadastrarEntregador(final Entregador entregador, final Activity activity) {
 
         FirebaseApp.initializeApp(activity);
@@ -115,8 +127,8 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("token", entregador.getToken());
 
                         Intent intent = new Intent(activity, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(intent);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.finish();
 
                         db_entregadores.document(firebaseAuth.getUid()).set(map);
@@ -207,8 +219,8 @@ public class AccessFirebase implements IAcessFirebase {
                     if (task.isSuccessful()) {
 
                         Intent i_entrar_prof = new Intent(activity, MainActivity.class);
-                        i_entrar_prof.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(i_entrar_prof);
+                        i_entrar_prof.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.finish();
 
                         Toast.makeText(activity, "Login efetuado com sucesso", Toast.LENGTH_LONG).show();
@@ -271,17 +283,20 @@ public class AccessFirebase implements IAcessFirebase {
                         List<String> id_user = new ArrayList<>();
                         QuerySnapshot queryDocumentSnapshots = task.getResult();
 
-                        for (Entregador entregador1 : queryDocumentSnapshots.toObjects(Entregador.class)) {
+                        if (queryDocumentSnapshots != null) {
 
-                            Log.i("Dados do entregador", "Entregador: " + entregador1.getId_user());
-                            id_user.add(entregador1.getId_user());
-                        }
+                            for (Entregador entregador1 : queryDocumentSnapshots.toObjects(Entregador.class)) {
 
-                        if (usuario_existe(id_user, id_user_validacao)) {
-                            Log.i("TAG", "Usuário Liberado");
-                        } else {
-                            sign_out_firebase(activity);
-                            Toast.makeText(activity, "Acesso negado", Toast.LENGTH_LONG).show();
+                                Log.i("Dados do entregador", "Entregador: " + entregador1.getId_user());
+                                id_user.add(entregador1.getId_user());
+                            }
+
+                            if (usuario_existe(id_user, id_user_validacao)) {
+                                Log.i("TAG", "Usuário Liberado");
+                            } else {
+                                sign_out_firebase(activity);
+                                Toast.makeText(activity, "Acesso negado", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 });

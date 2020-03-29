@@ -25,10 +25,12 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="cadastro_dispositivo">Cadastro de dispositivo</string>
     <string name="quantidade_de_gas">Quantidade de Gás</string>
     <string name="quantidade_de_gua">Quantidade de Água</string>
     <string name="sair">sair</string>
     <string name="title_activity_splash_finaliza_pedido">SplashFinalizaPedido</string>
+    <string name="configura_es">Configurações</string>
+    <string name="menu_perfil">Cadastro de telefone</string>
 
 </resources>

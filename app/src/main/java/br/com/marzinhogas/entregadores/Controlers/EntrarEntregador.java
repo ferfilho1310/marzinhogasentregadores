@@ -114,5 +114,4 @@ public class EntrarEntregador extends AppCompatActivity {
                 }).create().show();
     }
 
-
 }

@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Controlers.Fragments.send;
+package br.com.marzinhogas.entregadores.Controlers.Fragments.CadastrarDispositivo;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
