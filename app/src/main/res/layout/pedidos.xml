@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:orientation="vertical"
     android:layout_marginTop="7dp"
-    android:background="@drawable/shadow">
+    android:background="@drawable/shadow"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,13 +29,15 @@
 
         <TextView
             android:id="@+id/txt_nome_do_pedido"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
             android:layout_below="@id/nome_cliente"
             android:layout_alignParentStart="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Fernando Antônio da Silva Filho"
+            android:minWidth="1dp"
+            android:maxLines="9"
+            android:text="Fernando"
             android:textColor="@android:color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -45,22 +47,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="85dp"
+            android:layout_marginStart="23dp"
             android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/nome_cliente"
+            android:layout_toEndOf="@id/txt_nome_do_pedido"
             android:text="Endereço"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_endereco_cliente"
-            android:layout_width="103dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/endereco_cliente"
             android:layout_marginStart="23dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/txt_nome_do_pedido"
-            android:text="Rua Caetés, 103, Centro"
+            android:minWidth="100dp"
+            android:text="Rua Salvador pilo"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 
@@ -69,9 +72,9 @@
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/endereco_cliente"
+            android:layout_toEndOf="@id/txt_endereco_cliente"
             android:text="Produto pedido"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -81,9 +84,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/produto_cliente"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/endereco_cliente"
+            android:layout_toEndOf="@id/txt_endereco_cliente"
+            android:minWidth="80dp"
             android:text="Água e Gás"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

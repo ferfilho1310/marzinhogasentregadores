@@ -1,4 +1,4 @@
-package br.com.marzinhogas.entregadores.Controlers.Fragments.share;
+package br.com.marzinhogas.entregadores.Controlers.Fragments.TabelaDePreço;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

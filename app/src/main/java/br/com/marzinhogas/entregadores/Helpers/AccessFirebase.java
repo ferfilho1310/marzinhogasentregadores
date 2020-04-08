@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -29,9 +32,11 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.marzinhogas.entregadores.Controlers.EntrarEntregador;
+import br.com.marzinhogas.entregadores.Controlers.Fragments.TabelaDePreço.Tabeladepreco;
 import br.com.marzinhogas.entregadores.Controlers.MainActivity;
 import br.com.marzinhogas.entregadores.Models.Entregador;
 import br.com.marzinhogas.entregadores.Models.Imei;
+import br.com.marzinhogas.entregadores.Models.PrecoProdutos;
 
 public class AccessFirebase implements IAcessFirebase {
 
@@ -41,6 +46,7 @@ public class AccessFirebase implements IAcessFirebase {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     CollectionReference db_entregadores = FirebaseFirestore.getInstance().collection("Entregadores");
     CollectionReference db_imei = FirebaseFirestore.getInstance().collection("Imei");
+    DocumentReference db_tabelapreco = FirebaseFirestore.getInstance().collection("Tabeladepreco").document("precos");
 
     private AccessFirebase() {
     }
@@ -62,7 +68,32 @@ public class AccessFirebase implements IAcessFirebase {
         map.put("imei", imei.getImei());
 
         db_imei.add(map);
+    }
 
+    @Override
+    public void cadastrar_tabela(PrecoProdutos precoProdutos, final Activity activity) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("precoagua", precoProdutos.getPreco_agua());
+        map.put("precogas", precoProdutos.getPreco_gas());
+
+        db_tabelapreco.set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                Toast.makeText(activity, "Preço alterado com sucesso", Toast.LENGTH_LONG).show();
+                Intent i_cadastro_sucesso = new Intent(activity, MainActivity.class);
+                activity.startActivity(i_cadastro_sucesso);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Toast.makeText(activity, "Erro ao cadastrar a tabela", Toast.LENGTH_LONG).show();
+                Log.e("TAG", "Erro ao cadastrar tabela" + e);
+            }
+        });
     }
 
     @Override
@@ -121,8 +152,8 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("email", entregador.getEmail());
                         map.put("cpf", entregador.getCpf());
                         map.put("placa", entregador.getPlaca());
-                        map.put("senha", entregador.getSenha());
-                        map.put("confirmarsenha", entregador.getConfirmarsenha());
+                        map.put("senha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getSenha()));
+                        map.put("confirmarsenha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getConfirmarsenha()));
                         map.put("sexo", entregador.getSexo());
                         map.put("token", entregador.getToken());
 

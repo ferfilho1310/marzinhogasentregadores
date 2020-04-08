@@ -4,8 +4,10 @@ import android.app.Activity;
 
 import java.util.List;
 
+import br.com.marzinhogas.entregadores.Controlers.Fragments.TabelaDePreço.Tabeladepreco;
 import br.com.marzinhogas.entregadores.Models.Entregador;
 import br.com.marzinhogas.entregadores.Models.Imei;
+import br.com.marzinhogas.entregadores.Models.PrecoProdutos;
 
 public interface IAcessFirebase {
 
@@ -28,5 +30,7 @@ public interface IAcessFirebase {
     void validar_cadastro(String imei, Activity activity);
 
     void cadastro_celular(Imei imei);
+
+    void cadastrar_tabela(PrecoProdutos precoProdutos,Activity activity);
 
 }

@@ -32,5 +32,6 @@
     <string name="title_activity_splash_finaliza_pedido">SplashFinalizaPedido</string>
     <string name="configura_es">Configurações</string>
     <string name="menu_perfil">Cadastro de telefone</string>
+    <string name="tabela_de_preco">Tabela de preço</string>
 
 </resources>

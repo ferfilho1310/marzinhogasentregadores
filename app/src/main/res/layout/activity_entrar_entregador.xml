@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/logo_entrada" />
+            android:src="@drawable/logo_margzinho_entregadores" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

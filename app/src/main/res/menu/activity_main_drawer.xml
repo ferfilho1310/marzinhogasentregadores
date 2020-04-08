@@ -17,6 +17,9 @@
             <item
                 android:id="@+id/nav_send"
                 android:title="@string/menu_perfil" />
+            <item
+                android:id="@+id/cadastro_tabela"
+                android:title="@string/tabela_de_preco" />
 
         </menu>
     </item>

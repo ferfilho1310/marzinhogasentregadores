@@ -10,4 +10,6 @@ public interface IAccessResourcesCellPhone {
 
     void showPermissionMessage(Activity activity);
 
+    String criptografiadesenha(String user,String senha);
+
 }
