@@ -8,11 +8,16 @@ public class Imei {
     public Imei() {
     }
 
-    public String getUsuariodocelular() {
+    public Imei(String imei, String usuariodocelular) {
+        this.imei = imei;
+        this.usuariodocelular = usuariodocelular;
+    }
+
+    public String getUsuario() {
         return usuariodocelular;
     }
 
-    public void setUsuariodocelular(String usuariodocelular) {
+    public void setUsuario(String usuariodocelular) {
         this.usuariodocelular = usuariodocelular;
     }
 

@@ -54,7 +54,6 @@ public class CadastrarEntregador extends AppCompatActivity {
         final EditText senha_confirmar = findViewById(R.id.ed_confirmar_senha);
         final String token = FirebaseInstanceId.getInstance().getToken();
         final EditText cpf = findViewById(R.id.ed_cpf);
-        final EditText placa = findViewById(R.id.ed_placa);
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +67,9 @@ public class CadastrarEntregador extends AppCompatActivity {
                 entregador.setConfirmarsenha(senha_confirmar.getText().toString());
                 entregador.setToken(token);
                 entregador.setCpf(cpf.getText().toString());
-                entregador.setPlaca(placa.getText().toString());
 
                 AccessFirebase.getInstance().CadastrarEntregador(entregador, CadastrarEntregador.this);
                 validartelefone(CadastrarEntregador.this);
-
             }
         });
     }
@@ -83,7 +80,6 @@ public class CadastrarEntregador extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... voids) {
-
                 AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(activity),activity);
                 return null;
             }

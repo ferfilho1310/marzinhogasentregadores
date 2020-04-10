@@ -55,7 +55,7 @@ public class Cadastrodispositivo extends Fragment {
         txt_no_cellphone_cadastro = root.findViewById(R.id.sem_dispositivo);
         add_celular = root.findViewById(R.id.fab_cadastrar_dispositivo);
 
-        lerdadofirebase(getActivity());
+        lerdadofirebase();
 
         add_celular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class Cadastrodispositivo extends Fragment {
 
                 Imei imei = new Imei();
 
-                imei.setUsuariodocelular(nome_dono_celular.getText().toString());
+                imei.setUsuario(nome_dono_celular.getText().toString());
                 imei.setImei(imei_celular.getText().toString());
 
                 AccessFirebase.getInstance().cadastro_celular(imei);
@@ -99,7 +99,7 @@ public class Cadastrodispositivo extends Fragment {
         dialog.show();
     }
 
-    private void lerdadofirebase(Context context) {
+    private void lerdadofirebase() {
 
         query = cl_imei;
 
@@ -107,7 +107,7 @@ public class Cadastrodispositivo extends Fragment {
                 .setQuery(query, Imei.class)
                 .build();
 
-        adapterCadastroCelular = new AdapterCadastroCelular(fro_cadastro_celular);
+        adapterCadastroCelular = new AdapterCadastroCelular(fro_cadastro_celular,getActivity());
         rc_cadastro_dispositivo.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rc_cadastro_dispositivo.setAdapter(adapterCadastroCelular);
         rc_cadastro_dispositivo.setHasFixedSize(true);

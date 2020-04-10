@@ -64,7 +64,7 @@ public class AccessFirebase implements IAcessFirebase {
 
         Map<String, Object> map = new HashMap<>();
 
-        map.put("usuario", imei.getUsuariodocelular());
+        map.put("usuario", imei.getUsuario());
         map.put("imei", imei.getImei());
 
         db_imei.add(map);
@@ -126,10 +126,6 @@ public class AccessFirebase implements IAcessFirebase {
             return;
         }
 
-        if (TextUtils.isEmpty(entregador.getPlaca())) {
-            Toast.makeText(activity, "Informe a placa da moto", Toast.LENGTH_LONG).show();
-            return;
-        }
 
         if (entregador.getSenha().equals(entregador.getConfirmarsenha())) {
 
@@ -151,7 +147,6 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("nome", entregador.getNome());
                         map.put("email", entregador.getEmail());
                         map.put("cpf", entregador.getCpf());
-                        map.put("placa", entregador.getPlaca());
                         map.put("senha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getSenha()));
                         map.put("confirmarsenha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getConfirmarsenha()));
                         map.put("sexo", entregador.getSexo());

@@ -22,31 +22,33 @@
             android:id="@+id/txt_nome_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_toStartOf="@id/img_delete"
             android:layout_toEndOf="@id/nome_usario"
-            android:text="Fernando Antônio da silva Filho" />
+            android:text="Fernando Antônio da Silva Filho" />
 
         <TextView
             android:id="@+id/imei_celular_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_nome_usuario"
+            android:layout_below="@+id/txt_nome_usuario"
             android:layout_alignParentStart="true"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:text="IMEI: " />
+            android:layout_marginTop="8dp"
+            android:text="IMEI:" />
 
         <TextView
             android:id="@+id/imei_celular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nome_usario"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="12dp"
+            android:layout_below="@+id/txt_nome_usuario"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imei_celular_user"
             android:text="356456778677657" />
 
         <View
+            android:id="@+id/linha_cadastro_celular"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/imei_celular"

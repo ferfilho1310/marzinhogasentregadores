@@ -105,7 +105,7 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                             String pedidos = map.get("body");
 
                             builder.setColor(Color.WHITE)
-                                    .setSmallIcon(R.drawable.logo_entrada)
+                                    .setSmallIcon(R.drawable.logo_margzinho_entregadores)
                                     .setContentTitle("Você tem entrega para fazer")
                                     .setContentText(pedidos)
                                     .setAutoCancel(true)

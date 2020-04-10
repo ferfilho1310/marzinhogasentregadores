@@ -9,15 +9,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:background="@color/colorPrimary" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="18dp"
         android:background="@drawable/shadow"
+        android:gravity="center"
         android:padding="12dp">
 
         <TextView
@@ -34,86 +41,85 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/rl_agua"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_below="@id/txt_nome_produto"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textInputLayout_agua"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:minWidth="70dp"
-                android:textColor="@android:color/darker_gray"
-                android:text="Água"
-                android:textSize="20sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/textInputLayout_agua">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_preco_da_agua"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Preço"
-                    android:minWidth="100dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_gas"
+            android:id="@+id/ly_agua_gas"
+            android:gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/rl_agua">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textInputLayout_gas"
+            <LinearLayout
+                android:id="@+id/rl_agua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="35dp"
-                android:hint="Gás"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="20sp"
-                android:minWidth="55dp" />
+                android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/textInputLayout_gas"
-                android:layout_marginTop="12dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_preco_da_gas"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textInputLayout_agua"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Preço"
-                    android:minWidth="100dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </RelativeLayout>
+                    android:text="Água"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_preco_da_agua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Preço"
+                        android:inputType="numberDecimal"
+                        android:minWidth="100dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_gas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textInputLayout_gas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Gás"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_preco_da_gas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Preço"
+                        android:inputType="numberDecimal"
+                        android:minWidth="100dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_cadastra_tabela"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rl_gas"
+            android:layout_below="@id/ly_agua_gas"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
             android:background="@drawable/corner_color"
-            android:text="Cadastrar" />
+            android:text="Cadastrar"
+            android:textColor="@android:color/white"/>
 
     </RelativeLayout>
-
 </RelativeLayout>

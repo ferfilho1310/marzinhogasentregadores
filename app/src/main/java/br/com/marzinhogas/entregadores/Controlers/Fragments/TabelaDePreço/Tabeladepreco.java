@@ -57,9 +57,6 @@ public class Tabeladepreco extends Fragment {
 
                         preco_agua.setText(precoProdutos.getPreco_agua());
                         preco_gas.setText(precoProdutos.getPreco_gas());
-                    }else{
-                        preco_agua.setText("0.00");
-                        preco_gas.setText("0.00");
                     }
                 }
             });

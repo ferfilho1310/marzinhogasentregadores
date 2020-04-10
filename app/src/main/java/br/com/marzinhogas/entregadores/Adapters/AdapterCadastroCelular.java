@@ -1,5 +1,8 @@
 package br.com.marzinhogas.entregadores.Adapters;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +17,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import br.com.marzinhogas.entregadores.Helpers.AccessResourcesCellPhone;
 import br.com.marzinhogas.entregadores.Models.Imei;
 import br.com.marzinhogas.entregadores.R;
 
 public class AdapterCadastroCelular extends FirestoreRecyclerAdapter<Imei, AdapterCadastroCelular.ViewHolderCadastroCelular> {
+
+    Activity activity;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -25,8 +31,9 @@ public class AdapterCadastroCelular extends FirestoreRecyclerAdapter<Imei, Adapt
      *
      * @param options
      */
-    public AdapterCadastroCelular(@NonNull FirestoreRecyclerOptions<Imei> options) {
+    public AdapterCadastroCelular(@NonNull FirestoreRecyclerOptions<Imei> options, Activity activity) {
         super(options);
+        this.activity = activity;
     }
 
     @NonNull
@@ -39,14 +46,21 @@ public class AdapterCadastroCelular extends FirestoreRecyclerAdapter<Imei, Adapt
     @Override
     protected void onBindViewHolder(@NonNull final ViewHolderCadastroCelular holder, int position, @NonNull Imei model) {
 
-        holder.nome_celular.setText(model.getUsuariodocelular());
+        holder.nome_celular.setText(model.getUsuario());
         holder.imei_celular_cadsatrado.setText(model.getImei());
         holder.delete_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                deleteuser(holder.getAdapterPosition());
-
+                new AlertDialog.Builder(activity)
+                        .setTitle("Atenção")
+                        .setMessage("Caso o telefone seja excluído o mesmo não poderá mais acessar o aplicativo")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteuser(holder.getAdapterPosition());
+                            }
+                        }).setNegativeButton("Cancelar", null).show();
             }
         });
     }
