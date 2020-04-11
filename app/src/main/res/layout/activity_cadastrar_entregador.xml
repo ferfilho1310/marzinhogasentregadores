@@ -129,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
+            android:textColor="@android:color/white"
             android:background="@drawable/corner_color"
             android:text="@string/cadastrar"
             android:textStyle="bold" />

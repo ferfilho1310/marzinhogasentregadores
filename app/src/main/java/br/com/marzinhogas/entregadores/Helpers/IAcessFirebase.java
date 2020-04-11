@@ -1,6 +1,9 @@
 package br.com.marzinhogas.entregadores.Helpers;
 
 import android.app.Activity;
+import android.widget.EditText;
+
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
 
@@ -32,5 +35,7 @@ public interface IAcessFirebase {
     void cadastro_celular(Imei imei);
 
     void cadastrar_tabela(PrecoProdutos precoProdutos,Activity activity);
+
+    void retornatabeladepreco(EditText ed_preco_agua,EditText ed_preco_gas);
 
 }

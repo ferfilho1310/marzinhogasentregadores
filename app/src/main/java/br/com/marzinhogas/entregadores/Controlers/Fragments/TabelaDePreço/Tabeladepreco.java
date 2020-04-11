@@ -1,5 +1,7 @@
 package br.com.marzinhogas.entregadores.Controlers.Fragments.TabelaDePreço;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,38 +46,28 @@ public class Tabeladepreco extends Fragment {
         preco_gas = root.findViewById(R.id.ed_preco_da_gas);
         cadastrar_tabela = root.findViewById(R.id.btn_cadastra_tabela);
 
-        try {
-            FirebaseFirestore.getInstance().collection("Tabeladepreco").document("precos").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
-                    if (documentSnapshot != null) {
-                        PrecoProdutos precoProdutos = new PrecoProdutos();
-
-                        precoProdutos.setPreco_agua(String.valueOf(documentSnapshot.get("precoagua")));
-                        precoProdutos.setPreco_gas(String.valueOf(documentSnapshot.get("precogas")));
-
-                        preco_agua.setText(precoProdutos.getPreco_agua());
-                        preco_gas.setText(precoProdutos.getPreco_gas());
-                    }
-                }
-            });
-        } catch (Exception e) {
-
-            Toast.makeText(getActivity(), "Nenhum preço cadastrado", Toast.LENGTH_LONG).show();
-        }
+        AccessFirebase.getInstance().retornatabeladepreco(preco_agua, preco_gas);
 
         cadastrar_tabela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                PrecoProdutos precoProdutos = new PrecoProdutos();
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Atenção")
+                        .setMessage("Os preço dos produtos estão sendo alterados. Deseja confirmar a alteração ?")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                precoProdutos.setPreco_agua(preco_agua.getText().toString());
-                precoProdutos.setPreco_gas(preco_gas.getText().toString());
+                                PrecoProdutos precoProdutos = new PrecoProdutos();
 
-                AccessFirebase.getInstance().cadastrar_tabela(precoProdutos, getActivity());
+                                precoProdutos.setPreco_agua(preco_agua.getText().toString());
+                                precoProdutos.setPreco_gas(preco_gas.getText().toString());
 
+                                AccessFirebase.getInstance().cadastrar_tabela(precoProdutos, getActivity());
+
+                            }
+                        }).setNegativeButton("Cancelar", null).show();
             }
         });
 

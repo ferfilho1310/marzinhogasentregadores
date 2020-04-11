@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,7 +24,10 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -97,6 +102,27 @@ public class AccessFirebase implements IAcessFirebase {
     }
 
     @Override
+    public void retornatabeladepreco(final EditText ed_preco_agua, final EditText ed_preco_gas) {
+
+        FirebaseFirestore.getInstance().collection("Tabeladepreco").document("precos").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+
+                if (documentSnapshot != null) {
+                    PrecoProdutos precoProdutos = new PrecoProdutos();
+
+                    precoProdutos.setPreco_agua(String.valueOf(documentSnapshot.get("precoagua")));
+                    precoProdutos.setPreco_gas(String.valueOf(documentSnapshot.get("precogas")));
+
+                    ed_preco_agua.setText(precoProdutos.getPreco_agua());
+                    ed_preco_gas.setText(precoProdutos.getPreco_gas());
+
+                }
+            }
+        });
+    }
+
+    @Override
     public void CadastrarEntregador(final Entregador entregador, final Activity activity) {
 
         FirebaseApp.initializeApp(activity);
@@ -147,8 +173,8 @@ public class AccessFirebase implements IAcessFirebase {
                         map.put("nome", entregador.getNome());
                         map.put("email", entregador.getEmail());
                         map.put("cpf", entregador.getCpf());
-                        map.put("senha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getSenha()));
-                        map.put("confirmarsenha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(),entregador.getConfirmarsenha()));
+                        map.put("senha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(), entregador.getSenha()));
+                        map.put("confirmarsenha", AccessResourcesCellPhone.getInstance().criptografiadesenha(entregador.getNome(), entregador.getConfirmarsenha()));
                         map.put("sexo", entregador.getSexo());
                         map.put("token", entregador.getToken());
 
