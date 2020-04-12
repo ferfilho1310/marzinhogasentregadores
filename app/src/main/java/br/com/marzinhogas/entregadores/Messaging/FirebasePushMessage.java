@@ -54,9 +54,6 @@ public class FirebasePushMessage extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        AudioManager audioManager = (AudioManager) getApplication().getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_RING, audioManager.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
-
         final Map<String, String> map = remoteMessage.getData();
 
         String id_entregador = map.get("id_entregador");
@@ -72,6 +69,25 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
                         if (documentSnapshot != null) {
+
+                            pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
+                            boolean displayon = false;
+                            if (pm != null) {
+                                displayon = pm.isScreenOn();
+                            }
+
+                            if (!displayon) {
+
+                                wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+                                wl.acquire(10000);
+                                wl_cpu = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyCpuLock");
+                                wl_cpu.acquire(10000);
+                            }
+
+                            AudioManager audioManager = (AudioManager) getApplication().getSystemService(Context.AUDIO_SERVICE);
+                            if (audioManager != null) {
+                                audioManager.setStreamVolume(AudioManager.STREAM_RING, audioManager.getStreamMaxVolume(AudioManager.STREAM_RING), 0);
+                            }
 
                             Pedido pedido = documentSnapshot.toObject(Pedido.class);
 
@@ -97,7 +113,9 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                 notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
                                 notificationChannel.getSound();
                                 notificationChannel.shouldShowLights();
-                                notificationManager.createNotificationChannel(notificationChannel);
+                                if (notificationManager != null) {
+                                    notificationManager.createNotificationChannel(notificationChannel);
+                                }
                             }
 
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), notificacionid);
@@ -116,20 +134,11 @@ public class FirebasePushMessage extends FirebaseMessagingService {
                                     .setContentIntent(pendingIntent)
                                     .setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
-                            notificationManager.notify(1, builder.build());
+                            if (notificationManager != null) {
+                                notificationManager.notify(1, builder.build());
+                            }
                         }
                     }
                 });
-
-        pm = (PowerManager) getApplication().getSystemService(Context.POWER_SERVICE);
-        boolean displayon = pm.isScreenOn();
-
-        if (displayon != true) {
-
-            wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
-            wl.acquire(10000);
-            wl_cpu = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyCpuLock");
-            wl_cpu.acquire(10000);
-        }
     }
 }
