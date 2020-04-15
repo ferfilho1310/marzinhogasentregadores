@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,18 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Controlers.Resetsenha"></activity>
         <activity
             android:name=".Controlers.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Controlers.CadastrarEntregador"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Controlers.CadastrarEntregador"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Controlers.EntrarEntregador"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +37,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Messaging.FirebasePushMessage"
+        <service
+            android:name=".Messaging.FirebasePushMessage"
             android:enabled="true"
             android:exported="true"
             android:stopWithTask="false">
@@ -44,4 +47,5 @@
             </intent-filter>
         </service>
     </application>
+
 </manifest>

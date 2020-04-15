@@ -2,12 +2,7 @@ package br.com.marzinhogas.entregadores.Helpers;
 
 import android.app.Activity;
 import android.widget.EditText;
-
-import com.google.firebase.firestore.DocumentSnapshot;
-
 import java.util.List;
-
-import br.com.marzinhogas.entregadores.Controlers.Fragments.TabelaDePreço.Tabeladepreco;
 import br.com.marzinhogas.entregadores.Models.Entregador;
 import br.com.marzinhogas.entregadores.Models.Imei;
 import br.com.marzinhogas.entregadores.Models.PrecoProdutos;

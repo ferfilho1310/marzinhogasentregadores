@@ -2,6 +2,7 @@ package br.com.marzinhogas.entregadores.Controlers;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ import br.com.marzinhogas.entregadores.R;
 
 public class EntrarEntregador extends AppCompatActivity {
 
+    TextView clique_aqui;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,18 @@ public class EntrarEntregador extends AppCompatActivity {
 
         FirebaseApp.initializeApp(EntrarEntregador.this);
 
+        clique_aqui = findViewById(R.id.txt_clique_aqui);
+
         AccessFirebase.getInstance().PersistirEntregador(EntrarEntregador.this);
+
+        clique_aqui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i_clique_aqui = new Intent(EntrarEntregador.this, Resetsenha.class);
+                startActivity(i_clique_aqui);
+            }
+        });
 
         init();
     }
