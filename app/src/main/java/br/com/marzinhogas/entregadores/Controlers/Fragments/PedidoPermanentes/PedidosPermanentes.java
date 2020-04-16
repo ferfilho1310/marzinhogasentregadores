@@ -2,11 +2,16 @@ package br.com.marzinhogas.entregadores.Controlers.Fragments.PedidoPermanentes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +23,7 @@ import com.google.firebase.firestore.Query;
 
 import br.com.marzinhogas.entregadores.Adapters.AdapterPedidoRegistrados;
 import br.com.marzinhogas.entregadores.Adapters.AdapterViewEmpty;
+import br.com.marzinhogas.entregadores.Controlers.MainActivity;
 import br.com.marzinhogas.entregadores.Models.Pedido;
 import br.com.marzinhogas.entregadores.R;
 
@@ -43,7 +49,7 @@ public class PedidosPermanentes extends Fragment {
 
         lerpedidosfeitos();
 
-        AdapterViewEmpty adapterViewEmpty = new AdapterViewEmpty(txt_registro_permanente,rc_pedidos_feitos);
+        AdapterViewEmpty adapterViewEmpty = new AdapterViewEmpty(txt_registro_permanente, rc_pedidos_feitos);
         adapterPedidosCliente.registerAdapterDataObserver(adapterViewEmpty);
 
         return root;

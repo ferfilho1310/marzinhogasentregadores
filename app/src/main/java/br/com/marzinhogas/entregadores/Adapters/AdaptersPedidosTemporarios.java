@@ -14,7 +14,7 @@ import br.com.marzinhogas.entregadores.Models.Pedido;
 import br.com.marzinhogas.entregadores.R;
 import br.com.marzinhogas.entregadores.ViewHolders.ViewHolderPedidosTemporarios;
 
-public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios>{
+public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido, ViewHolderPedidosTemporarios> {
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -29,14 +29,13 @@ public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido,
     @NonNull
     @Override
     public ViewHolderPedidosTemporarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new ViewHolderPedidosTemporarios(LayoutInflater.from(parent.getContext()).inflate(R.layout.pedidos, parent, false));
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderPedidosTemporarios holder, int position, @NonNull Pedido model) {
 
-        String endereco = model.getEndereco() + "\n" + model.getNumero() +"\n"+ model.getBairro();
+        String endereco = model.getEndereco() + ", " + model.getNumero() + ", " + model.getBairro() + ",\n" + model.getComplemento();
 
         holder.nome.setText(model.getNome());
         holder.produtos.setText(model.getProduto());
@@ -45,11 +44,9 @@ public class AdaptersPedidosTemporarios extends FirestoreRecyclerAdapter<Pedido,
         holder.data.setText(model.getData());
         holder.endereco.setText(endereco);
         holder.horario_pedido.setText(model.getHorario());
-
     }
 
-    public void deletepedido(int position){
-
+    public void deletepedido(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
 
     }

@@ -28,14 +28,13 @@ public class AdapterPedidoRegistrados extends FirestoreRecyclerAdapter<Pedido, V
     @NonNull
     @Override
     public ViewHolderPedidosTemporarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new ViewHolderPedidosTemporarios(LayoutInflater.from(parent.getContext()).inflate(R.layout.pedidos, parent, false));
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderPedidosTemporarios holder, int position, @NonNull Pedido model) {
 
-        String endereco = model.getEndereco() + "\n" + model.getNumero() +"\n"+ model.getBairro();
+        String endereco = model.getEndereco() + ", " + model.getNumero() +", "+ model.getBairro() +",\n"+ model.getComplemento();
 
         holder.nome.setText(model.getNome());
         holder.produtos.setText(model.getProduto());

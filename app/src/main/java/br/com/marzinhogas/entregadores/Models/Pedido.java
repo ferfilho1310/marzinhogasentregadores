@@ -17,12 +17,14 @@ public class Pedido implements Parcelable {
     private String user_id_pedido;
     private String horario;
     private Boolean entregue;
+    private String complemento;
 
     public Pedido() {
     }
 
     public Pedido(String nome, String produto, String endereco, int quantidade_gas,
-                  int quantidade_agua, String data, String user_id_pedido, String horario, String numero,String bairro, Boolean entregue) {
+                  int quantidade_agua, String data, String user_id_pedido, String horario,
+                  String numero,String bairro, String complemento,Boolean entregue) {
         this.nome = nome;
         this.produto = produto;
         this.endereco = endereco;
@@ -34,6 +36,7 @@ public class Pedido implements Parcelable {
         this.entregue = entregue;
         this.bairro = bairro;
         this.numero = numero;
+        this.complemento = complemento;
     }
 
     protected Pedido(Parcel in) {
@@ -48,6 +51,7 @@ public class Pedido implements Parcelable {
         entregue = Boolean.valueOf(in.readString());
         bairro = in.readString();
         numero = in.readString();
+        complemento = in.readString();
     }
 
     public static final Creator<Pedido> CREATOR = new Creator<Pedido>() {
@@ -150,6 +154,14 @@ public class Pedido implements Parcelable {
         this.bairro = bairro;
     }
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -168,5 +180,6 @@ public class Pedido implements Parcelable {
         parcel.writeString(String.valueOf(entregue));
         parcel.writeString(bairro);
         parcel.writeString(numero);
+        parcel.writeString(complemento);
     }
 }
