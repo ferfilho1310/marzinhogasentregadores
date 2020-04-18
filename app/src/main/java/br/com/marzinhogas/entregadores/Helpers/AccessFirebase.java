@@ -180,7 +180,7 @@ public class AccessFirebase implements IAcessFirebase {
 
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         activity.finish();
 
                         db_entregadores.document(firebaseAuth.getUid()).set(map);
@@ -272,7 +272,7 @@ public class AccessFirebase implements IAcessFirebase {
 
                         Intent i_entrar_prof = new Intent(activity, MainActivity.class);
                         activity.startActivity(i_entrar_prof);
-                        i_entrar_prof.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i_entrar_prof.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         activity.finish();
 
                         Toast.makeText(activity, "Login efetuado com sucesso", Toast.LENGTH_LONG).show();

@@ -1,6 +1,8 @@
 package br.com.marzinhogas.entregadores.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -34,7 +36,7 @@ public class AdapterPedidoRegistrados extends FirestoreRecyclerAdapter<Pedido, V
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderPedidosTemporarios holder, int position, @NonNull Pedido model) {
 
-        String endereco = model.getEndereco() + ", " + model.getNumero() +", "+ model.getBairro() +",\n"+ model.getComplemento();
+        String endereco = model.getEndereco() + ", " + model.getNumero() + ", \n" + model.getBairro() + "\n" + model.getComplemento();
 
         holder.nome.setText(model.getNome());
         holder.produtos.setText(model.getProduto());
@@ -43,6 +45,5 @@ public class AdapterPedidoRegistrados extends FirestoreRecyclerAdapter<Pedido, V
         holder.data.setText(model.getData());
         holder.endereco.setText(endereco);
         holder.horario_pedido.setText(model.getHorario());
-
     }
 }

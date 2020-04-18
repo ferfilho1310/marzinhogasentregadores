@@ -75,12 +75,12 @@ public class CadastrarEntregador extends AppCompatActivity {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public void validartelefone(final Activity activity){
-        new AsyncTask<Void,Void,Void>(){
+    public void validartelefone(final Activity activity) {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(activity),activity);
+                AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(activity), activity);
                 return null;
             }
         };
@@ -89,13 +89,19 @@ public class CadastrarEntregador extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home){
-
-            Intent i_voltar_tela_inicial = new Intent(CadastrarEntregador.this,EntrarEntregador.class);
+        if (item.getItemId() == android.R.id.home) {
+            Intent i_voltar_tela_inicial = new Intent(CadastrarEntregador.this, EntrarEntregador.class);
             startActivity(i_voltar_tela_inicial);
             finish();
-
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i_back = new Intent(CadastrarEntregador.this, EntrarEntregador.class);
+        startActivity(i_back);
+        finish();
     }
 }

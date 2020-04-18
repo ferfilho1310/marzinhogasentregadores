@@ -41,7 +41,6 @@ public class PedidoTemporarios extends Fragment {
 
         rc_pedidos_feitos = root.findViewById(R.id.rc_fila_pedido);
         txt_registro_temp = root.findViewById(R.id.txt_registro_pedido_temporario);
-
         lerpedidosfeitos();
 
         AdapterViewEmpty adapterViewEmpty = new AdapterViewEmpty(txt_registro_temp,rc_pedidos_feitos);

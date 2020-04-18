@@ -1,6 +1,7 @@
 package br.com.marzinhogas.entregadores.ViewHolders;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,7 +11,7 @@ import br.com.marzinhogas.entregadores.R;
 
 public class ViewHolderPedidosTemporarios extends RecyclerView.ViewHolder {
 
-    public TextView nome,produtos,data,qtd_gas,qtd_agua,endereco,horario_pedido;
+    public TextView nome, produtos, data, qtd_gas, qtd_agua, endereco, horario_pedido;
 
     public ViewHolderPedidosTemporarios(@NonNull View itemView) {
         super(itemView);
@@ -21,7 +22,6 @@ public class ViewHolderPedidosTemporarios extends RecyclerView.ViewHolder {
         qtd_agua = itemView.findViewById(R.id.txt_qtd_agua);
         qtd_gas = itemView.findViewById(R.id.txt_qtd_gas);
         endereco = itemView.findViewById(R.id.txt_endereco_cliente);
-        horario_pedido =itemView.findViewById(R.id.txt_horario_pedido);
-
+        horario_pedido = itemView.findViewById(R.id.txt_horario_pedido);
     }
 }
