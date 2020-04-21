@@ -1,6 +1,7 @@
 package br.com.marzinhogas.entregadores.Controlers.Fragments.PedidosTemporarios;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +42,12 @@ public class PedidoTemporarios extends Fragment {
 
         rc_pedidos_feitos = root.findViewById(R.id.rc_fila_pedido);
         txt_registro_temp = root.findViewById(R.id.txt_registro_pedido_temporario);
+
         lerpedidosfeitos();
 
-        AdapterViewEmpty adapterViewEmpty = new AdapterViewEmpty(txt_registro_temp,rc_pedidos_feitos);
+        AdapterViewEmpty adapterViewEmpty = new AdapterViewEmpty(txt_registro_temp, rc_pedidos_feitos);
         adapterPedidosCliente.registerAdapterDataObserver(adapterViewEmpty);
+
 
         return root;
     }
@@ -75,18 +78,27 @@ public class PedidoTemporarios extends Fragment {
 
             }
         }).attachToRecyclerView(rc_pedidos_feitos);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapterPedidosCliente.startListening();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapterPedidosCliente.startListening();
+            }
+        },2000);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapterPedidosCliente.stopListening();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapterPedidosCliente.stopListening();
+            }
+        },2000);
     }
 }
