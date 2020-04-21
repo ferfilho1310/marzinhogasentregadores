@@ -37,8 +37,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Tabela de preço"
-            android:textSize="20dp"
+            android:text="@string/tabela_de_pre_o"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -60,7 +60,7 @@
                     android:id="@+id/textInputLayout_agua"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Água"
+                    android:text="@string/gua"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
                         android:id="@+id/ed_preco_da_agua"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Preço"
+                        android:hint="@string/pre_o"
                         android:inputType="numberDecimal"
                         android:minWidth="100dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +88,7 @@
                     android:id="@+id/textInputLayout_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Gás"
+                    android:hint="@string/g_s"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="20sp" />
 
@@ -101,12 +101,12 @@
                         android:id="@+id/ed_preco_da_gas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Preço"
+                        android:hint="@string/pre_o"
                         android:inputType="numberDecimal"
                         android:minWidth="100dp" />
                 </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
 
+            </LinearLayout>
         </LinearLayout>
 
         <Button

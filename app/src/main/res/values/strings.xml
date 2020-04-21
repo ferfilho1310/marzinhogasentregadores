@@ -33,5 +33,33 @@
     <string name="configura_es">Configurações</string>
     <string name="menu_perfil">Cadastro de telefone</string>
     <string name="tabela_de_preco">Tabela de preço</string>
+    <string name="cpf">CPF</string>
+    <string name="esqueceu_sua_senha">Esqueceu sua senha ?</string>
+    <string name="clique_aqui">Clique Aqui</string>
+    <string name="digite_seu_e_mail_abaixo_para_trocar_sua_senha">Digite seu e-mail abaixo para trocar sua senha</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="alterar_senha">Alterar Senha</string>
+    <string name="nenhum_celular_cadastrado_n_os_celulares_cadastrados_apareceram_aqui">Nenhum celular cadastrado.   Os celulares cadastrados apareceram aqui</string>
+    <string name="tabela_de_pre_o">Tabela de preço</string>
+    <string name="gua">Água</string>
+    <string name="pre_o">Preço</string>
+    <string name="g_s">Gás</string>
+    <string name="cadastro_de_dispositivo">Cadastro de dispositivo</string>
+    <string name="nome_do_usu_rio_do_telefone">Nome do usuário do telefone</string>
+    <string name="imei_do_celular">IMEI do celular</string>
+    <string name="nome_do_usu_rio">Nome do usuário:</string>
+    <string name="fernando_ant_nio_da_silva_filho">Fernando Antônio da Silva Filho</string>
+    <string name="imei">IMEI:</string>
+    <string name="_356456778677657">356456778677657</string>
+    <string name="nenhum_pedido_registrado_n_aqui_ficar_registrado_todos_os_pedidos_n_realizados_pelos_seus_clientes">Nenhum pedido registrado.   Aqui ficará registrado todos os pedidos   realizados pelos seus clientes</string>
+    <string name="_20_33_55">20:33:55</string>
+    <string name="hora_do_pedido">Hora do pedido</string>
+    <string name="_26_03_2020">26/03/2020</string>
+    <string name="data_do_pedido">Data do pedido</string>
+    <string name="zero">0</string>
+    <string name="gua_e_g_s">Água e Gás</string>
+    <string name="produto_pedido">Produto pedido</string>
+    <string name="rua_salvador_pilo">Rua Salvador pilo</string>
+    <string name="endere_o">Endereço</string>
 
 </resources>

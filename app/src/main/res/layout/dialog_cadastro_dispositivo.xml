@@ -14,8 +14,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastro de dispositivo"
-            android:textSize="35dp"
+            android:text="@string/cadastro_de_dispositivo"
+            android:textSize="35sp"
             android:gravity="center"
             android:textColor="@android:color/white"/>
 
@@ -31,7 +31,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome do usuário do telefone">
+            android:hint="@string/nome_do_usu_rio_do_telefone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_nome_dono_celular"
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="IMEI do celular">
+            android:hint="@string/imei_do_celular">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/imei_do_celular"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/corner_color"
             android:textColor="@android:color/white"
-            android:text="cadastrar" />
+            android:text="@string/cadastrar" />
 
     </LinearLayout>
 </LinearLayout>

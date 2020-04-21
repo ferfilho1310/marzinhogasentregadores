@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:paddingVertical="90dp" />
+        android:paddingVertical="90dp"
+        tools:targetApi="o" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -34,7 +35,7 @@
                 android:id="@+id/ed_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_person"
+                android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="12dp"
                 android:inputType="text" />
 
@@ -49,7 +50,7 @@
                 android:id="@+id/ed_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_email"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="12dp"
                 android:inputType="textEmailAddress" />
 
@@ -58,13 +59,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="CPF">
+            android:hint="@string/cpf">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_cpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_documento"
+                android:drawableStart="@drawable/ic_documento"
                 android:drawablePadding="12dp"
                 android:inputType="number" />
 
@@ -135,5 +136,4 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
 </LinearLayout>

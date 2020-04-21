@@ -24,7 +24,7 @@
         android:id="@+id/txt_registro_pedido_permanente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nenhum pedido registrado. \n Aqui ficará registrado todos os pedidos \n realizados pelos seus clientes "
+        android:text="@string/nenhum_pedido_registrado_n_aqui_ficar_registrado_todos_os_pedidos_n_realizados_pelos_seus_clientes"
         android:textSize="17sp"
         android:textColor="@color/colorPrimary"
         android:gravity="center"

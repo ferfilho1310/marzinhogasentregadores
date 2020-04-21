@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Digite seu e-mail abaixo para trocar sua senha"
+            android:text="@string/digite_seu_e_mail_abaixo_para_trocar_sua_senha"
             android:textColor="@color/colorPrimary"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Digite seu email">
+            android:hint="@string/digite_seu_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_recuperar_senha"
@@ -60,10 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/corner_color"
-            android:text="Alterar Senha"
+            android:text="@string/alterar_senha"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
-
-
 </RelativeLayout>
