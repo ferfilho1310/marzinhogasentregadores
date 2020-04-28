@@ -27,25 +27,25 @@ import br.com.marzinhogas.entregadores.R;
 
 public class EntrarEntregador extends AppCompatActivity {
 
-    TextView clique_aqui;
+    TextView clique_aqui,imei;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar_entregador);
 
-        checkForPhoneStatePermission();
-
+        AccessResourcesCellPhone.getInstance().checkForPhoneStatePermissionImei(EntrarEntregador.this);
         FirebaseApp.initializeApp(EntrarEntregador.this);
 
         clique_aqui = findViewById(R.id.txt_clique_aqui);
-
+        imei = findViewById(R.id.imei_celular);
         AccessFirebase.getInstance().PersistirEntregador(EntrarEntregador.this);
+
+        imei.setText(AccessResourcesCellPhone.getInstance().getImei(EntrarEntregador.this));
 
         clique_aqui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i_clique_aqui = new Intent(EntrarEntregador.this, Resetsenha.class);
                 startActivity(i_clique_aqui);
             }
@@ -64,68 +64,16 @@ public class EntrarEntregador extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AccessFirebase.getInstance().entrar_firebase(email_entrar.getText().toString(),
                         senha_entrar.getText().toString(), EntrarEntregador.this);
-
             }
         });
 
         cadastrar_textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 new IntentsHelper().intent(EntrarEntregador.this, CadastrarEntregador.class);
-
             }
         });
     }
-
-    private void checkForPhoneStatePermission() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            if (ContextCompat.checkSelfPermission(EntrarEntregador.this,
-                    Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(EntrarEntregador.this,
-                        Manifest.permission.READ_PHONE_STATE)) {
-
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                    showPermissionMessage();
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-                    ActivityCompat.requestPermissions(EntrarEntregador.this,
-                            new String[]{Manifest.permission.READ_PHONE_STATE},
-                            1);
-                }
-            }
-        } else {
-            //... Permission has already been granted, obtain the UUID
-            AccessResourcesCellPhone.getInstance().getImei(EntrarEntregador.this);
-        }
-
-    }
-
-    private void showPermissionMessage() {
-        new AlertDialog.Builder(this)
-                .setTitle("Read phone state")
-                .setMessage("This app requires the permission to read phone state to continue")
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(EntrarEntregador.this,
-                                new String[]{Manifest.permission.READ_PHONE_STATE},
-                                1);
-                    }
-                }).create().show();
-    }
-
 }

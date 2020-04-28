@@ -6,10 +6,7 @@ public interface IAccessResourcesCellPhone {
 
     String getImei(Activity activity);
 
-    void checkForPhoneStatePermission(Activity activity);
-
-    void showPermissionMessage(Activity activity);
+    boolean checkForPhoneStatePermissionImei(Activity activity);
 
     String criptografiadesenha(String user,String senha);
-
 }

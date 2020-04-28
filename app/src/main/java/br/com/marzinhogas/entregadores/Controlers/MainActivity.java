@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
-      AccessResourcesCellPhone.getInstance().checkForPhoneStatePermission(MainActivity.this);
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -79,25 +77,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-
         if (id == R.id.sair) {
-
             AlertDialog.Builder alert_exit = new AlertDialog.Builder(MainActivity.this);
             alert_exit.setMessage("Você deseja realmente sair ?");
 
             alert_exit.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                     AccessFirebase.getInstance().sign_out_firebase(MainActivity.this);
-
                 }
             }).setNegativeButton("Cancelar", null);
-
             alert_exit.show();
-
         } else if (id == android.R.id.home) {
-
             drawer.openDrawer(Gravity.LEFT);
         }
         return true;
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             getUid = firebaseUser.getUid();
         }
-
         AccessFirebase.getInstance().validar_usuario(getUid, MainActivity.this);
         AccessFirebase.getInstance().validar_cadastro(AccessResourcesCellPhone.getInstance().getImei(MainActivity.this), MainActivity.this);
     }
