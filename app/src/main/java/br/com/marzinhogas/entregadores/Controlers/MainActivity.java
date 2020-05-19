@@ -3,6 +3,7 @@ package br.com.marzinhogas.entregadores.Controlers;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 
@@ -13,10 +14,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    String getUid;
+    String getUid,token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        AccessFirebase.getInstance().atualiza_token(FirebaseAuth.getInstance().getUid(), FirebaseInstanceId.getInstance().getToken());
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                token = instanceIdResult.getToken();
+                Log.i("Token", "Token Firebase " + token);
+            }
+        });
+
+        AccessFirebase.getInstance().atualiza_token(FirebaseAuth.getInstance().getUid(), token);
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
@@ -50,6 +51,8 @@ public class AccessResourcesCellPhone implements IAccessResourcesCellPhone {
         if (null == deviceUniqueIdentifier || 0 == deviceUniqueIdentifier.length()) {
             deviceUniqueIdentifier = Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID);
         }
+
+        Log.i("IMEI","IMEI do telefone: " + deviceUniqueIdentifier);
         return deviceUniqueIdentifier;
     }
 

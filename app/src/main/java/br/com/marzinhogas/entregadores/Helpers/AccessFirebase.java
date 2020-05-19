@@ -336,9 +336,7 @@ public class AccessFirebase implements IAcessFirebase {
                         QuerySnapshot queryDocumentSnapshots = task.getResult();
 
                         if (queryDocumentSnapshots != null) {
-
                             for (Entregador entregador1 : queryDocumentSnapshots.toObjects(Entregador.class)) {
-
                                 Log.i("Dados do entregador", "Entregador: " + entregador1.getId_user());
                                 id_user.add(entregador1.getId_user());
                             }
@@ -362,18 +360,13 @@ public class AccessFirebase implements IAcessFirebase {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                         List<String> ls_imei = new ArrayList<>();
-
                         QuerySnapshot queryDocumentSnapshots = task.getResult();
-
                         for (Imei imei1 : queryDocumentSnapshots.toObjects(Imei.class)) {
-
                             ls_imei.add(imei1.getImei());
                         }
-
                         if (usuario_existe(ls_imei, imei)) {
-
+                            Log.i("Usuário liberador", imei);
                         } else {
                             sign_out_firebase(activity);
                             Toast.makeText(activity, "Telefone não cadastrado na base de dados", Toast.LENGTH_LONG).show();
