@@ -14,7 +14,6 @@ Acesse o link da play store para baixar: https://play.google.com/store/apps/deta
 - Firebase
 - AdMob
 - Android Studio
-- MVC
 - Push Notification
 - Design Patterns
 
